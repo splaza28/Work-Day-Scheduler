@@ -7,7 +7,7 @@ var currentTime = function () {
   let timeOfDay = moment().hours();
 
 
-  
+  //create onclick eventlistener/funciton for start button
   $(document).ready(function() {
     $(".saveBtn").on("click", function() {
       var value = $(this).siblings(".description").val();
@@ -18,6 +18,8 @@ var currentTime = function () {
     });
 });
 
+
+//pulling data from local storage for given time block
 $("#hour-9 .description").val(localStorage.getItem("hour-9"));
   $("#hour-10 .description").val(localStorage.getItem("hour-10"));
   $("#hour-11 .description").val(localStorage.getItem("hour-11"));
@@ -29,11 +31,12 @@ $("#hour-9 .description").val(localStorage.getItem("hour-9"));
   $("#hour-5 .description").val(localStorage.getItem("hour-5"));
  
 
+
  $(".time-block").each(function() {
       var blockHour = parseInt($(this).attr("id").split("-")[1]);
       var currentHour = moment().hours();
 
-      // check if we've moved past this time
+      // check whether the given time is past, current, or future: color-code each
       if (blockHour < currentHour) {
         $(this).addClass("past");
       } 
